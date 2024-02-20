@@ -27,6 +27,10 @@ public class Owner {
     private Integer id;
     private String email;
     private String password;
+
+    @OneToOne
+    private Account account;
+
     @OneToMany
     List<MeetingRoom> meetingRooms = new ArrayList<>();
     @OneToMany
@@ -35,8 +39,7 @@ public class Owner {
     List<Booking> bookings= new ArrayList<>();
     @OneToMany
     List<FeedBack> viewFeedBacks = new ArrayList<>();
-    @OneToOne
-    private Account account;
+
     @OneToMany
     List<Payment> viewPayments=new ArrayList<>();
 
