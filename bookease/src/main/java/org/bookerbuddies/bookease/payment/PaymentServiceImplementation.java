@@ -36,5 +36,6 @@ public class PaymentServiceImplementation implements PaymentService {
        paymentRepository.save(newPayment);
 
        return  fromAccount.getBalance();
+
     }
 }
