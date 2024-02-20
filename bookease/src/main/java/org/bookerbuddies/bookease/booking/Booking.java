@@ -27,8 +27,7 @@ public class Booking {
 
     @OneToOne
     private Payment payment;
-    @OneToOne
-    private FeedBack feedBack;
+
     @ManyToOne
     private MeetingRoom meetingRoom;
 

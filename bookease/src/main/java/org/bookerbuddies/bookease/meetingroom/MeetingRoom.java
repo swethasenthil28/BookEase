@@ -1,13 +1,11 @@
 package org.bookerbuddies.bookease.meetingroom;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.bookerbuddies.bookease.booking.Booking;
+import org.bookerbuddies.bookease.feedback.FeedBack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +25,7 @@ public class MeetingRoom {
     private String eventDescription;
     private Double costOfRoom;
     @OneToMany
-    List<Booking> booking = new ArrayList<>();
+    List<FeedBack> feedBacks = new ArrayList<>();
 
 
 

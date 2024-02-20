@@ -18,10 +18,8 @@ public class Account {
     private String name;
     private Double balance;
     private String role;
-    @OneToOne
-    private Owner owner;
-    @OneToOne
-    private Client client;
+
+
 
     public Integer getAccountId() {
         return accountId;

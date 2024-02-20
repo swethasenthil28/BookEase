@@ -37,8 +37,6 @@ public class Owner {
     List<Client> clients = new ArrayList<>();
     @OneToMany
     List<Booking> bookings= new ArrayList<>();
-    @OneToMany
-    List<FeedBack> viewFeedBacks = new ArrayList<>();
 
     @OneToMany
     List<Payment> viewPayments=new ArrayList<>();
