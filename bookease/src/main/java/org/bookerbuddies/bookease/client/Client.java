@@ -28,7 +28,17 @@ public class Client {
     List<Booking> bookings = new ArrayList<>();
     @OneToOne
     private Account account;
-    @OneToOne
-    private Payment payment;
+    @OneToMany
+    List<Payment> payment=new ArrayList<>();
+
+    public Client(Integer id, String email, String password,String name,Account account) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.name=name;
+        this.account = account;
+
+    }
+
 
 }

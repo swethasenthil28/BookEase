@@ -24,4 +24,10 @@ public class Account {
     @OneToOne
     private Client client;
 
+    public Account(Integer accountId, String name, Double balance,String role) {
+        this.accountId = accountId;
+        this.name = name;
+        this.balance = balance;
+        this.role=role;
+    }
 }
