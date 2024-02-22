@@ -9,8 +9,8 @@ import org.bookerbuddies.bookease.owner.Owner;
 
 @Entity
 @Data
-//@AllArgsConstructor
-//@NoArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,8 +18,6 @@ public class Account {
     private String name;
     private Double balance;
     private String role;
-
-
 
     public Integer getAccountId() {
         return accountId;
@@ -53,31 +51,8 @@ public class Account {
         this.role = role;
     }
 
-    public Owner getOwner() {
-        return owner;
-    }
 
-    public void setOwner(Owner owner) {
-        this.owner = owner;
-    }
 
-    public Client getClient() {
-        return client;
-    }
 
-    public void setClient(Client client) {
-        this.client = client;
-    }
 
-    public Account(Integer accountId, String name, Double balance, String role, Owner owner, Client client) {
-        this.accountId = accountId;
-        this.name = name;
-        this.balance = balance;
-        this.role = role;
-        this.owner = owner;
-        this.client = client;
-    }
-
-    public Account() {
-    }
 }

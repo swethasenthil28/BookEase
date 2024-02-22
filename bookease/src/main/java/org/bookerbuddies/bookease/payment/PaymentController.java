@@ -1,17 +1,13 @@
 package org.bookerbuddies.bookease.payment;
 
 
-import org.aspectj.lang.annotation.SuppressAjWarnings;
-import org.bookerbuddies.bookease.account.Account;
-import org.bookerbuddies.bookease.client.Client;
-import org.bookerbuddies.bookease.payment.exception.PaymentInsufficientBalance;
+import org.bookerbuddies.bookease.account.exceptions.AccountNotFoundException;
+import org.bookerbuddies.bookease.payment.dto.Cancellation;
+import org.bookerbuddies.bookease.payment.dto.Transaction;
+import org.bookerbuddies.bookease.payment.exception.PaymentInsufficientBalanceException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -20,14 +16,12 @@ public class PaymentController {
     @Autowired
     PaymentService paymentService;
 
-    @PatchMapping("payment/{senderId}/{recieverId}")
-    public Double makePayment(@PathVariable Integer senderId,@PathVariable Integer recieverId,@PathVariable Double amount)throws PaymentInsufficientBalance {
+    @PatchMapping("payment")
+    public Double makePayment(@RequestBody Transaction transaction)throws PaymentInsufficientBalanceException, AccountNotFoundException {
 
-        Double senderBalanceAmount = paymentService.transaction(senderId, recieverId, amount);
-
+        Double senderBalanceAmount = paymentService.transaction(transaction.getSenderId(), transaction.getReceiverId(), transaction.getAmount());
         return senderBalanceAmount;
     }
-
 
     @GetMapping("getPayments/{type}/{id}")
     public List<Payment> getAllPlayment(@PathVariable  String type,@PathVariable Integer id){
@@ -35,11 +29,17 @@ public class PaymentController {
     }
 
     @GetMapping("cancellation")
-    public Double cancellation(@PathVariable LocalDate bookingDate, Client client){
-
-        return paymentService.paymentsCancellation(bookingDate, client);
+    public Double bookingCancellation(@RequestBody Cancellation cancellation) throws AccountNotFoundException, PaymentInsufficientBalanceException{
+        return paymentService.paymentsCancellation(cancellation);
 
     }
+
+    @DeleteMapping("deleteAccount")
+    public Boolean deleteAccount(Integer accountId) throws AccountNotFoundException{
+        return paymentService.deleteExistingAccount(accountId);
+    }
+
+
 
 
 

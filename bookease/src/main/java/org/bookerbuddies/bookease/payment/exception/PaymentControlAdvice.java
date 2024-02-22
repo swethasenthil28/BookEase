@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class PaymentControlAdvice {
 
-    @ExceptionHandler(value = {PaymentInsufficientBalance.class})
-    public ResponseEntity<String> accountExceptionHandler(PaymentInsufficientBalance e){
+    @ExceptionHandler(value = {PaymentInsufficientBalanceException.class})
+    public ResponseEntity<String> accountExceptionHandler(PaymentInsufficientBalanceException e){
         return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }
