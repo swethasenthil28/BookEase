@@ -1,36 +1,30 @@
 package org.bookerbuddies.bookease.booking;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.bookerbuddies.bookease.client.Client;
+import lombok.*;
 import org.bookerbuddies.bookease.feedback.FeedBack;
 import org.bookerbuddies.bookease.meetingroom.MeetingRoom;
 import org.bookerbuddies.bookease.payment.Payment;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Setter
+@Getter
+@Data
 @Entity
 public class Booking {
     @Id
+    @GeneratedValue
     private Integer id;
-    private LocalTime startTime;
-    private LocalTime endTime;
     private LocalDate bookingDate;
     private LocalDate bookedDate;
     private Boolean status;
+    private String eventDescription;
 
     @OneToOne
     private Payment payment;
     @OneToOne
     private FeedBack feedBack;
-    @ManyToOne
-    private MeetingRoom meetingRoom;
-
-
-}
+   }

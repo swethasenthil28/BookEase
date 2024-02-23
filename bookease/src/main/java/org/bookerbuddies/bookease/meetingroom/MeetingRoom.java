@@ -1,20 +1,21 @@
 package org.bookerbuddies.bookease.meetingroom;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.*;
+import lombok.*;
 import org.bookerbuddies.bookease.booking.Booking;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-
-@Entity
-@Data@AllArgsConstructor
+@AllArgsConstructor
 @NoArgsConstructor
+@Entity
+@Data
+@Getter
+@Setter
 public class MeetingRoom {
     @Id
     @GeneratedValue
@@ -23,12 +24,10 @@ public class MeetingRoom {
     private Integer capacity;
     private Integer floorNumber;
     private String type;//enumerated datatype
-    private Boolean isAvailabile;
-    private String eventDescription;
+    private LocalDate date;
     private Double costOfRoom;
-    @OneToMany
-    List<Booking> booking = new ArrayList<>();
-
-
+    private Boolean isAvailable;
+    @OneToOne
+    private Booking  booking;
 
 }
